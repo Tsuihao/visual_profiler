@@ -7,6 +7,7 @@
 #include <string>
 #include <algorithm> // std::replace
 #include <thread>    // std::thread::id
+#include <time.h>    // strftime
 #include <mutex>
 #include <fstream>
 
@@ -40,10 +41,15 @@ public:
         endSession();
     }
 
-    void beginSession(const std::string& name, const std::string& filepath = "ProfileResult.json")
+    void beginSession(const std::string& name, const std::string& filepath_prefix = "profiling")
     {
         if(m_hasActiveSession) { endSession(); }
         m_hasActiveSession = true;
+
+        // append date and time in the output file
+        const std::string& currTime = getCurrTime();
+        std::string filepath = filepath_prefix + "_" + currTime + ".json";
+        
         m_outputStream.open(filepath);
         writeHeader();
         m_sessionName = name;
@@ -98,6 +104,18 @@ public:
     {
         static Instrumentor instance;
         return instance;
+    }
+
+protected:
+
+    // helper function for the time class
+    const std::string getCurrTime()
+    {
+        std::time_t t = time(NULL);
+        std::tm *now = localtime(&t);
+        char buf[20];
+        strftime(buf, sizeof(buf), "%m-%d.%X", now);
+        return buf;
     }
 
 private:
