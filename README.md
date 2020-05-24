@@ -42,6 +42,10 @@ make
 ./VisualProfiler
 ```
 
+## Note
+If you are using it to profile a large program, likely you might use `ctrl+c` to terminate it during runtime.
+In this case, your will NOT call `writeFooter()` correctly, you will need to **manually add "]}" to the end of the json file**. 
+
 ## Reference
 - The Cherno [[Link](https://www.youtube.com/watch?v=xlAH4dbMVnU)]
 - davechurchill's code [[Link](https://pastebin.com/qw5Neq4U)]
