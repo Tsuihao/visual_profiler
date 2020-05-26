@@ -1,7 +1,7 @@
 # Visual Profiler CPU
 
 ## Introduce
-Visual Profiler is a lightweight/header-only/singleton-pattern file which generate a json file to profile your CPU code. The backend is using chrome::tracing. Therefore, the json file needs to be complied with the chrome::tracing format
+Visual Profiler is a lightweight/header-only/singleton-pattern file which generate a json file to profile your CPU code. The backend is using chrome://tracing. Therefore, the json file needs to be complied with the chrome::tracing format
 
 ## How to use
 1. Download/copy-paste the **VisualProfiler.hpp**
